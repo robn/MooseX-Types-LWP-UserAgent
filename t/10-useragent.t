@@ -9,8 +9,8 @@ use Test::More tests => 9;
     use Moose::Util::TypeConstraints;
     use MooseX::Types::LWP::UserAgent qw(UserAgent);
 
-    has ua        => (is => 'rw', isa => 'UserAgent');
-    has ua_coerce => (is => 'rw', isa => 'UserAgent', coerce => 1);
+    has ua        => (is => 'rw', isa => UserAgent);
+    has ua_coerce => (is => 'rw', isa => UserAgent, coerce => 1);
 }
 
 use LWP::UserAgent;

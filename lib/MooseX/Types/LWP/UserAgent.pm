@@ -1,7 +1,7 @@
 package MooseX::Types::LWP::UserAgent;
 # ABSTRACT: MooseX::Types for LWP::UserAgent objects
 
-our $VERSION = "0.01";
+our $VERSION = "0.02";
 
 use warnings;
 use strict;
@@ -10,12 +10,13 @@ use MooseX::Types -declare => ["UserAgent"];
 use Moose::Util::TypeConstraints;
 use LWP::UserAgent ();
 
-subtype "UserAgent",
-    as      "Object",
-    where   { $_->isa("LWP::UserAgent") },
+class_type "LWP::UserAgent";
+
+subtype UserAgent,
+    as      "LWP::UserAgent",
     message { "Must be a LWP::UserAgent object" };
 
-coerce "UserAgent",
+coerce UserAgent,
     from "ArrayRef"
         => via { LWP::UserAgent->new(@$_) },
     from "HashRef"
